@@ -48,45 +48,21 @@
 
 ---
 
-## 🧠 System Architecture
+## 🧠 Telegram Bot Architecture
 
 ```
-flowchart TD
-    subgraph Frontend
-        UI1([🧑‍💻 User - Telegram])
-        UI2([🌐 User - Web])
-    end
+backend/
+├── data/
+│   └── schemes.json                # Knowledge base (state + central yojnas)
+├── utils/
+│   ├── db_logger.py                # Logs user queries and responses to MongoDB
+│   └── retriever.py                # Fuzzy + TF-IDF-based scheme retriever
+├── query_handler.py                # Core NLP logic with LangChain
+├── telegram_bot.py                 # Telegram Bot API handler
+├── app.py                          # (Optional) API entry if reused
+├── requirements.txt                # All backend dependencies
+└── .gitignore
 
-    subgraph Core Logic
-        QH([⚙️ Query Handler])
-        LANG([🌐 Language Detection])
-        RET([🔍 Retriever\n(TF-IDF + Fuzzy)])
-        DB[(🗃️ MongoDB Logger)]
-    end
-
-    subgraph LLM Engines
-        LLM1([🤖 Devstral-2505\nvia LangChain])
-        LLM2([🦙 Fine-tuned LLaMA\nvia Flask API])
-    end
-
-    subgraph Response
-        RESP1([📩 Telegram Reply])
-        RESP2([💬 Web Chat Reply])
-    end
-
-    %% Connections
-    UI1 -->|Query| QH
-    UI2 -->|Query| QH
-
-    QH --> LANG
-    QH --> RET
-    QH --> DB
-
-    RET --> LLM1
-    RET --> LLM2
-
-    LLM1 --> RESP1
-    LLM2 --> RESP2
 ```
 
 ---
@@ -106,34 +82,42 @@ flowchart TD
 
 ---
 
-## 📁 Project Structure
+## 📁 Yojna Web Chatbot Structure
 
 ```
-yojnabot/
-├── backend/
-│   ├── data/
-│   │   └── schemes.json             # Government schemes database
-│   ├── telegram_bot.py              # Telegram interface
-│   ├── query_handler.py             # Main NLP logic
-│   ├── utils/
-│   │   ├── retriever.py             # TF-IDF + fuzzy retrieval
-│   │   └── db_logger.py             # MongoDB logging
-│   ├── fine_tuned_tiny_llama/       # Model directory (safetensors, tokenizer, config)
-│   ├── chatbot_model.py             # Loads and runs fine-tuned LLaMA model
-│   ├── app.py                       # Flask API backend for web chatbot
-│   ├── .env                         # Token and config vars
-│   └── requirements.txt             # Python dependencies
+WEB/
+├── chatbot_backend/                # Flask API for chatbot
+│   ├── fine_tuned_tiny_llama/
+│   │   ├── adapter_config.json
+│   │   ├── adapter_model.safetensors
+│   │   ├── chat_template.jinja
+│   │   ├── optimizer.pt
+│   │   ├── rng_state.pth
+│   │   ├── scaler.pt
+│   │   ├── scheduler.pt
+│   │   ├── special_tokens_map.json
+│   │   ├── tokenizer_config.json
+│   │   ├── tokenizer.json
+│   │   ├── tokenizer.model
+│   │   ├── trainer_state.json
+│   │   └── training_args.bin
+│   ├── chatbot_model.py            # Loads model + handles prompt/response
+│   ├── app.py                      # Flask server + CORS config
+│   └── requirements.txt
 │
-└── frontend/
-    └── chatbot_frontend/            # React app for web chatbot
-        ├── public/
-        ├── src/
-        │   ├── App.js
-        │   ├── Chatbot.js
-        │   ├── Chatbot.css
-        │   └── index.js
-        ├── package.json
-        └── ...
+└── chatbot_frontend/chatbot/       # React.js frontend (Vite)
+    ├── public/
+    ├── src/
+    │   ├── assets/
+    │   ├── App.jsx
+    │   ├── App.css
+    │   ├── index.css
+    │   └── main.jsx
+    ├── index.html
+    ├── package.json
+    ├── vite.config.js
+    └── README.md
+
 ```
 
 ---
