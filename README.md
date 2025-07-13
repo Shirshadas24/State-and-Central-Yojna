@@ -16,7 +16,7 @@
 
 ## 🔗 Live Project Links
 
-- 🤖 [**Try the Telegram Bot**](https://t.me/YOUR_BOT_USERNAME) *(Available when backend is active locally)*
+- 🤖 [**Try the Telegram Bot**](https://t.me/StateCentralYojnaBot) *(Available when backend is active locally)*
 - 💬 **Web Chatbot** powered by fine-tuned LLaMA *(Localhost only for now)*
 
 ---
