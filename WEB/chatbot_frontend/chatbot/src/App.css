@@ -1,0 +1,144 @@
+/* src/App.css */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #333;
+}
+
+.App {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  height: 80vh; /* Adjust height as needed */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-header {
+  background-color: #007bff; /* Primary blue */
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: bold;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.chat-messages {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between messages */
+}
+
+.message-container {
+  display: flex;
+  max-width: 80%;
+}
+
+.message-container.user {
+  justify-content: flex-end;
+  margin-left: auto; /* Push user messages to the right */
+}
+
+.message-bubble {
+  padding: 12px 18px;
+  border-radius: 20px;
+  font-size: 0.95em;
+  line-height: 1.4;
+  word-wrap: break-word; /* Ensure long words break */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.message-bubble.user {
+  background-color: #e0f2f7; /* Light blue for user */
+  color: #212121;
+  border-bottom-right-radius: 5px; /* More rectangular bottom-right */
+}
+
+.message-bubble.bot {
+  background-color: #f1f0f0; /* Light gray for bot */
+  color: #212121;
+  border-bottom-left-radius: 5px; /* More rectangular bottom-left */
+}
+
+.chat-input {
+  display: flex;
+  padding: 15px 20px;
+  border-top: 1px solid #eee;
+  background-color: #f9f9f9;
+}
+
+.chat-input input {
+  flex-grow: 1;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  font-size: 1em;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.chat-input input:focus {
+  border-color: #007bff;
+}
+
+.chat-input button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.chat-input button:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+.chat-input button:active {
+  transform: translateY(0);
+}
+
+/* Scrollbar styles for modern browsers */
+.chat-messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* For Firefox */
+.chat-messages {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
