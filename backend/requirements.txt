@@ -1,0 +1,6 @@
+flask
+flask-cors
+langchain
+huggingface_hub
+scikit-learn
+python-dotenv
