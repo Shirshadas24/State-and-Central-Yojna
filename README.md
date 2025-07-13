@@ -50,16 +50,43 @@
 
 ## 🧠 System Architecture
 
-```mermaid
+```
 flowchart TD
-  UI[User Interface: Telegram/Web] -->|Query| QH[Query Handler]
-  QH --> RET[Retriever (TF-IDF + Fuzzy)]
-  QH --> LANG[Language Detection]
-  RET --> LLM1[Devstral-2505 via LangChain]
-  RET --> LLM2[Fine-tuned LLaMA via Flask API]
-  LLM1 --> RESP1[Bot Response (Telegram)]
-  LLM2 --> RESP2[Bot Response (Web)]
-  QH --> DB[MongoDB Logger]
+    subgraph Frontend
+        UI1([🧑‍💻 User - Telegram])
+        UI2([🌐 User - Web])
+    end
+
+    subgraph Core Logic
+        QH([⚙️ Query Handler])
+        LANG([🌐 Language Detection])
+        RET([🔍 Retriever\n(TF-IDF + Fuzzy)])
+        DB[(🗃️ MongoDB Logger)]
+    end
+
+    subgraph LLM Engines
+        LLM1([🤖 Devstral-2505\nvia LangChain])
+        LLM2([🦙 Fine-tuned LLaMA\nvia Flask API])
+    end
+
+    subgraph Response
+        RESP1([📩 Telegram Reply])
+        RESP2([💬 Web Chat Reply])
+    end
+
+    %% Connections
+    UI1 -->|Query| QH
+    UI2 -->|Query| QH
+
+    QH --> LANG
+    QH --> RET
+    QH --> DB
+
+    RET --> LLM1
+    RET --> LLM2
+
+    LLM1 --> RESP1
+    LLM2 --> RESP2
 ```
 
 ---
