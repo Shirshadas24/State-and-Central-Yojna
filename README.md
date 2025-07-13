@@ -48,23 +48,6 @@
 
 ---
 
-## 🧠 Telegram Bot Architecture
-
-```
-backend/
-├── data/
-│   └── schemes.json                # Knowledge base (state + central yojnas)
-├── utils/
-│   ├── db_logger.py                # Logs user queries and responses to MongoDB
-│   └── retriever.py                # Fuzzy + TF-IDF-based scheme retriever
-├── query_handler.py                # Core NLP logic with LangChain
-├── telegram_bot.py                 # Telegram Bot API handler
-├── app.py                          # (Optional) API entry if reused
-├── requirements.txt                # All backend dependencies
-└── .gitignore
-
-```
-
 ---
 
 ## 🛠 Tech Stack
@@ -82,7 +65,24 @@ backend/
 
 ---
 
-## 📁 Yojna Web Chatbot Structure
+## 🧠 Telegram Bot Architecture
+
+```
+backend/
+├── data/
+│   └── schemes.json                # Knowledge base (state + central yojnas)
+├── utils/
+│   ├── db_logger.py                # Logs user queries and responses to MongoDB
+│   └── retriever.py                # Fuzzy + TF-IDF-based scheme retriever
+├── query_handler.py                # Core NLP logic with LangChain
+├── telegram_bot.py                 # Telegram Bot API handler
+├── app.py                          # (Optional) API entry if reused
+├── requirements.txt                # All backend dependencies
+└── .gitignore
+
+```
+
+## 🌐 Yojna Web Chatbot Structure
 
 ```
 WEB/
